@@ -3,8 +3,6 @@
 
   # Make sure the nix daemon always runs
   services.nix-daemon.enable = true;
-  # Installs a version of nix, that dosen't need "experimental-features = nix-command flakes" in /etc/nix/nix.conf
-  services.nix-daemon.package = pkgs.nixFlakes;
   
   # if you use zsh (the default on new macOS installations),
   # you'll need to enable this so nix-darwin creates a zshrc sourcing needed environment changes
@@ -28,9 +26,9 @@
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
-  home-manager.users.YourUserName = { pkgs, ... }: {
+  home-manager.users.feynman = { pkgs, ... }: {
   
-    stateVersion = "22.05"; # read below
+    home.stateVersion = "22.11"; # read below
   
     programs.tmux = { # my tmux configuration, for example
       enable = true;
