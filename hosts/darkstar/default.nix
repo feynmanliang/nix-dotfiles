@@ -1,13 +1,19 @@
 { pkgs, ... }:
 {
-
-  # Make sure the nix daemon always runs
+  # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
+  nix.package = pkgs.nix;
   
   # if you use zsh (the default on new macOS installations),
   # you'll need to enable this so nix-darwin creates a zshrc sourcing needed environment changes
   programs.zsh.enable = true;
   # bash is enabled by default
+
+  # List packages installed in system profile. To search by name, run:
+  # $ nix-env -qaP | grep wget
+  environment.systemPackages =
+    [ pkgs.neovim
+    ];
 
   homebrew = {
     enable = true;
@@ -18,7 +24,6 @@
       "amethyst"
       "alfred"
       "discord"
-      "neovim"
     ];
   };
 
