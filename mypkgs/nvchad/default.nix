@@ -12,7 +12,15 @@ let
   };
 
   launcher = pkgs.writeScript "nvchad" ''
-    export PATH="${pkgs.lib.makeBinPath [ pkgs.coreutils pkgs.git pkgs.neovim pkgs.ripgrep pkgs.fd pkgs.ueberzug ]}"
+    export PATH="${pkgs.lib.makeBinPath [ 
+      pkgs.coreutils 
+      pkgs.neovim 
+      pkgs.ripgrep 
+      pkgs.fd 
+      pkgs.ueberzug 
+      pkgs.git 
+      pkgs.cargo
+    ]}"
     export XDG_CONFIG_HOME=$(mktemp -d)
 
     # FIXME: Use the real XDG_CONFIG_HOME or fallback to $HOME/.config

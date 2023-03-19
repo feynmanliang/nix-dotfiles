@@ -56,19 +56,14 @@ in
       ];
     };
   
-    programs.tmux = { # my tmux configuration, for example
+    programs.tmux = {
       enable = true;
+      shortcut = "a";
       keyMode = "vi";
-      clock24 = true;
-      historyLimit = 10000;
-      plugins = with pkgs.tmuxPlugins; [
-        vim-tmux-navigator
-        gruvbox
-      ];
-      extraConfig = ''
-        new-session -s main
-        bind-key -n C-a send-prefix
-      '';
+      # plugins = with pkgs.tmuxPlugins; [
+      #   pain-control
+      #   gruvbox
+      # ];
     };
 
     programs.zsh.enable = true;
