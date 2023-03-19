@@ -13,11 +13,6 @@ in
   programs.zsh.enable = true;
   # bash is enabled by default
 
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
-  environment.systemPackages = [ 
-  ];
-
   homebrew = {
     enable = true;
     onActivation.autoUpdate = true;
@@ -75,5 +70,8 @@ in
         bind-key -n C-a send-prefix
       '';
     };
+
+    programs.zsh.enable = true;
+    programs.starship.enable = true;
   };
 }

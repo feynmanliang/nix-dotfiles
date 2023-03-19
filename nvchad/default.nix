@@ -36,6 +36,15 @@ in
 pkgs.stdenv.mkDerivation rec {
   inherit src version pname;
 
+  postPatch = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
+    # Fake the impure dependencies pbpaste and pbcopy
+    mkdir bin
+    echo '#!${pkgs.stdenv.shell}' > bin/pbpaste
+    echo '#!${pkgs.stdenv.shell}' > bin/pbcopy
+    chmod +x bin/{pbcopy,pbpaste}
+    export PATH=$(realpath bin):$PATH
+  '';
+
   installPhase = ''
     mkdir -p $out/bin
     ln -s ${launcher} $out/bin/nvchad
