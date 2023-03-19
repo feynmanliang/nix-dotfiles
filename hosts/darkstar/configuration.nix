@@ -1,8 +1,5 @@
 { pkgs, ... }:
 
-let
-  mypkgs = import ../../mypkgs { nixpkgs = pkgs; };
-in
 {
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
@@ -32,41 +29,5 @@ in
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
-  home-manager.users.feynman = { pkgs, ... }: {
-  
-    home.stateVersion = "22.11";
-
-    fonts.fontconfig.enable = true;
-    home.packages = ([
-      (pkgs.nerdfonts.override { fonts = [ "Cousine" ]; })
-    ])
-    ++ (with mypkgs; [ nvchad ]);
-
-    programs.neovim = {
-      enable = true;
-      defaultEditor = true;
-      viAlias = true;
-      vimAlias = true;
-      vimdiffAlias = true;
-      plugins = with pkgs.vimPlugins; [
-        nvim-lspconfig
-        plenary-nvim
-        gruvbox-material
-        mini-nvim
-      ];
-    };
-  
-    programs.tmux = {
-      enable = true;
-      shortcut = "a";
-      keyMode = "vi";
-      # plugins = with pkgs.tmuxPlugins; [
-      #   pain-control
-      #   gruvbox
-      # ];
-    };
-
-    programs.zsh.enable = true;
-    programs.starship.enable = true;
-  };
+  home-manager.users.feynman = import ./home.nix;
 }

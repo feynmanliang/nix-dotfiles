@@ -14,6 +14,7 @@ let
   launcher = pkgs.writeScript "nvchad" ''
     export PATH="${pkgs.lib.makeBinPath [ 
       pkgs.coreutils 
+      pkgs.gcc
       pkgs.neovim 
       pkgs.ripgrep 
       pkgs.fd 
