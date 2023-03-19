@@ -11,9 +11,8 @@
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages =
-    [ pkgs.neovim
-    ];
+  environment.systemPackages = [ 
+  ];
 
   homebrew = {
     enable = true;
@@ -32,6 +31,11 @@
   home-manager.users.feynman = { pkgs, ... }: {
   
     home.stateVersion = "22.11"; # read below
+
+    programs.neovim = {
+      enable = true;
+      defaultEditor = true;
+    };
   
     programs.tmux = { # my tmux configuration, for example
       enable = true;
