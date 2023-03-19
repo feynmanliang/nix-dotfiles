@@ -26,15 +26,35 @@
     ];
   };
 
+  users.users.feynman = {
+    name = "feynman";
+    home = "/Users/feynman";
+  };
+
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.users.feynman = { pkgs, ... }: {
   
     home.stateVersion = "22.11"; # read below
 
+    fonts.fontconfig.enable = true;
+    home.packages = [
+      (pkgs.nerdfonts.override { fonts = [ "Cousine" ]; })
+    ];
+
     programs.neovim = {
       enable = true;
       defaultEditor = true;
+      viAlias = true;
+      vimAlias = true;
+      vimdiffAlias = true;
+        plugins = with pkgs.vimPlugins; [
+        nvim-lspconfig
+        nvim-treesitter.withAllGrammars
+        plenary-nvim
+        gruvbox-material
+        mini-nvim
+      ];
     };
   
     programs.tmux = { # my tmux configuration, for example
