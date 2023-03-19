@@ -1,4 +1,8 @@
 { pkgs, ... }:
+
+let
+  nvchad = import ../../nvchad { pkgs=pkgs; };
+in
 {
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
@@ -38,9 +42,10 @@
     home.stateVersion = "22.11"; # read below
 
     fonts.fontconfig.enable = true;
-    home.packages = [
+    home.packages = ([
       (pkgs.nerdfonts.override { fonts = [ "Cousine" ]; })
-    ];
+    ])
+    ++ ([ nvchad ]);
 
     programs.neovim = {
       enable = true;
@@ -48,9 +53,8 @@
       viAlias = true;
       vimAlias = true;
       vimdiffAlias = true;
-        plugins = with pkgs.vimPlugins; [
+      plugins = with pkgs.vimPlugins; [
         nvim-lspconfig
-        nvim-treesitter.withAllGrammars
         plenary-nvim
         gruvbox-material
         mini-nvim
