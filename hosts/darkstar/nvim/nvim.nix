@@ -61,10 +61,6 @@
                     EOF
                 '';
             }
-            cmp-nvim-lsp
-            cmp-buffer
-            cmp-path
-            cmp-cmdline
             {
                 plugin = nvim-cmp;
                 config = builtins.readFile ./plugins/cmp.lua;
@@ -72,16 +68,34 @@
             luasnip
             friendly-snippets
             cmp_luasnip
+            cmp-nvim-lsp
+            cmp-buffer
+            cmp-path
+            cmp-cmdline
             {
                 plugin = nvim-treesitter;
                 config = ''
                     lua << EOF
                     require('nvim-treesitter.configs').setup {
-                    highlight = {
-                        enable = true,
-                        additional_vim_regex_highlighting = false,
-                    },
+                        highlight = {
+                            enable = true,
+                            additional_vim_regex_highlighting = false,
+                        },
                     }
+                    EOF
+                '';
+            }
+            {
+                plugin = comment-nvim;
+                config = "lua require('Comment').setup()";
+            }
+            {
+                plugin = which-key-nvim;
+                config = ''
+                    lua << EOF
+                    vim.o.timeout = true
+                    vim.o.timeoutlen = 300
+                    require("which-key").setup({ })
                     EOF
                 '';
             }

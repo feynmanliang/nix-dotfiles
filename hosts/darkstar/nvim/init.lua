@@ -24,6 +24,8 @@ map('n', 'j', 'gj', opts)
 map('n', 'k', 'gk', opts)
 map('n', ';', ':', { noremap = true } )
 
+-- map leader to <Space>
+vim.keymap.set("n", " ", "<Nop>", { silent = true, remap = false })
 g.mapleader = ' '
 
 -- Performance
@@ -56,6 +58,7 @@ o.mouse = "a"
 o.cursorline = true
 o.relativenumber = true
 o.number = true
+o.listchars = "eol:↵,trail:~,tab:>-,nbsp:␣"
 
 -- Get rid of annoying viminfo file
 o.viminfo = ""

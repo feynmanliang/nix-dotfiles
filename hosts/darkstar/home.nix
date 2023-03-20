@@ -15,6 +15,11 @@ in
       yq
       ripgrep
 
+      # rust
+      rustc
+      cargo
+      rust-analyzer
+
       # nix
       rnix-lsp 
       nixfmt
