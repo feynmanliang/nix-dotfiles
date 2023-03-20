@@ -1,9 +1,18 @@
-Set up local flake.
+Build the nix flake.
+
 ```bash
 nix build .#darwinConfigurations.darkstar.system
 ```
 
-Rebuild and load changes.
+After first build, rebuild and load changes.
+
 ```bash
+git add .
 ./result/sw/bin/darwin-rebuild switch --flake .#darkstar
+```
+
+When nix store gets too large.
+
+```bash
+sudo nix-collect-garbage -d
 ```
