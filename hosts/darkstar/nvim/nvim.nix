@@ -33,15 +33,45 @@
                 config = "lua require('indent_blankline').setup()";
             }
             {
+                plugin = nvim-autopairs;
+                config = "lua require('nvim-autopairs').setup()";
+            }
+            {
+                plugin = nvim-colorizer-lua;
+                config = "lua require('colorizer').setup()";
+            }
+            {
+                plugin = gitsigns-nvim;
+                config = "lua require('gitsigns').setup()";
+            }
+            {
                 plugin = nvim-lspconfig;
                 config = ''
                     lua << EOF
-                    require('lspconfig').rust_analyzer.setup{}
-                    require('lspconfig').sumneko_lua.setup{}
-                    require('lspconfig').rnix.setup{}
+                    local capabilities = require('cmp_nvim_lsp').default_capabilities()
+                    require('lspconfig').rust_analyzer.setup{
+                        capabilities = capabilities
+                    }
+                    require('lspconfig').sumneko_lua.setup{
+                        capabilities = capabilities
+                    }
+                    require('lspconfig').rnix.setup{
+                        capabilities = capabilities
+                    }
                     EOF
                 '';
             }
+            cmp-nvim-lsp
+            cmp-buffer
+            cmp-path
+            cmp-cmdline
+            {
+                plugin = nvim-cmp;
+                config = builtins.readFile ./plugins/cmp.lua;
+            }
+            luasnip
+            friendly-snippets
+            cmp_luasnip
             {
                 plugin = nvim-treesitter;
                 config = ''

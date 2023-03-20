@@ -27,7 +27,7 @@ in
 
     imports = [
         ./git.nix
-        ./nvim.nix
+        ./nvim/nvim.nix
         ./tmux.nix
         ./zsh.nix
     ];
