@@ -25,6 +25,7 @@ in
       nixfmt
 
       # lua
+      lua
       sumneko-lua-language-server 
       stylua
     ])
